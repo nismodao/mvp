@@ -18,27 +18,36 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  SoundCloud music player with audio visualization
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Consumers of SoundCloud
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Search for tracks on SoundCloud and watch the music pulsate to user defined visualization.
 
 ## Problem ##
   > Describe the problem your product solves.
+  Music players are generally functional -- this app allows the user to select audio visualization.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Web app fetches songs from the SoundCloud APT and the client renders the visualization  
+
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Login with your SoundCloud credentials, and search for an artist and watch the music
+  come alive.  Now choose the type of visualizaiton. 
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  'Really cool app for parties and events -- I can put the visualization on a big screen and the music just comes alive'
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
