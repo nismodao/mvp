@@ -2,42 +2,50 @@
 
 <html ng-app="Cloud">
   <head>
-    <meta charset="utf-8" />
+     <meta charset="utf-8"/>
      <title>SoundCloud</title>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+     <link href="style.css" rel="stylesheet">
   </head>
-  
   <body>
-    <h1>SoundCloud</h1>
-
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+    </nav>
     <div class="container" ng-controller="TracksController">
-      <form type="text" id="input" ng-submit="submit(text)">
-        <input type="text" ng-model="text" name="text"> </input>
-        <input type="submit" id-"submit" value="Submit"> </input> 
-      </form>
-      
-      <ul> TrackList
-        <li ng-repeat="track in trackArray track by $index" ng-click="start(track)"> {{track}} </li> 
-      </ul>
-    
+      <div class="row">
+        <div class="col-lg-4 center-block">
+          <h1>SoundCloud</h1>
+          <form type="text" id="input" ng-submit="submit(text)">
+            <input class="form-control" type="text" ng-model="text" name="text"> </input>
+            <input class="btn btn-primary center-block" type="submit" id="submit" value="Submit"> </input> 
+          </form>
+          <ul> 
+            <li ng-repeat=" (title,track) in trackObj" ng-click="processAudio(track)"> 
+              <span class="glyphicon glyphicon-play"> </span>
+                {{title}} 
+            </li> 
+          </ul>
+        </div>
+        <div class="col-lg-8">
+          <div class="art"> </div>
+        </div>  
+      </div>   
     </div>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"> </script>
     <script src="https://connect.soundcloud.com/sdk/sdk-3.1.1.js"> </script>
     <script src="jquery.min.js"> </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"> </script>
     <script src="app.js"> </script>
     <script src="auth.js"> </script>
     <script src="main.js"> </script>
-    <script>   
-
+    <script src="draw.js"> </script>
+    <script>  
       SC.initialize({
-        client_id: window.client,
-        redirect_uri: window.redirect,
-        oauth_token: window.oauth_token
-      });
-
+      client_id: window.client,
+      redirect_uri: window.redirect,
+      oauth_token: window.oauth_token
+      }); 
     </script>
-
-
    </body>
 </html>

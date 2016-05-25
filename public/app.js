@@ -1,3 +1,4 @@
+var audioContext = new AudioContext();
 
 angular.module('Cloud', [])
 .controller("TracksController", function ($scope, helper) {
@@ -5,24 +6,16 @@ angular.module('Cloud', [])
 })
 .factory('helper', function () {
   var service = {};
-  service.trackArray = [];
-
-    service.start = function (song) {
-      console.log(song);
-      song = song.slice(26);
-      SC.stream(song)
-      .then(function(player){
-        player.play();
-      })
-    };
-
-    service.submit = function (text) { 
+  service.trackObj = {};
+    service.submit = function (text) {
+      text = text || ""; 
       return SC.get('/tracks', {
         q: text, license: 'cc-by-sa'
       })
       .then(function(tracks) {
         tracks.forEach(function(value, index) {
-          return service.trackArray.push(value['uri']);
+          service.trackObj[value['title']] = value['stream_url'];
+          return service.trackObj;
         });
       })
       .catch(function (err) {
@@ -30,15 +23,28 @@ angular.module('Cloud', [])
       })
     };
 
-  return service;
-    
+    service.processAudio = function (song) {
+      var analyser, source, freqByteData;
+      var audio = new Audio();
+      audio.crossOrigin = "Anonymous";
+      song = song + '?client_id=' + window.client;      
+      analyser = audioContext.createAnalyser();
+      analyser.minDecibels = -85;
+      analyser.maxDecibels = -10;
+      analyser.smoothingTimeConstant = 0.77;
+      analyser.fftSize = 2048;
+      audio.src = song;
+      source = audioContext.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioContext.destination);
+      source.mediaElement.play();
+      freqByteData = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(freqByteData);
+      window.audioData = freqByteData;
+    };
+  return service;   
 });     
 
 
-
-
-  
-
-// [value['artwork_url'],value['description'],
 
 
